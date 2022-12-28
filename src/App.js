@@ -47,25 +47,21 @@ function App() {
 
   useEffect(() => {
     console.log(filterName);
-    setNewTodo(todo);
-    const a = todo.filter((item) => {
-      console.log(item, filterName);
-      if (filterName === "All") return true;
-      else if (filterName === "Active") return item.done === false;
-      else if (filterName === "Completed") return item.done === true;
-    });
-    setNewTodo(a);
+    setNewTodo(
+      todo.filter((item) => {
+        console.log(item, filterName);
+        if (filterName === "All") return true;
+        else if (filterName === "Active") return item.done === false;
+        else if (filterName === "Completed") return item.done === true;
+      })
+    );
     console.log("newTodo", newTodo);
   }, [filterName]);
 
   return (
     <>
       <section className="todoapp">
-        <Header
-          todo={todo}
-          setTodo={setTodo}
-          setFilterName={setFilterName}
-        />
+        <Header todo={todo} setTodo={setTodo} setFilterName={setFilterName} />
         <section className="main">
           <input type="checkbox" className="toggle-all" id="toggle-all" onClick={change} />
           <label htmlFor="toggle-all">Mark all as complete</label>
